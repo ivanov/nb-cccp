@@ -40,21 +40,21 @@ define( function () {
             IPython.toolbar.add_buttons_group([
                 {
                     'label'   : 'cut several cells',
-                    'icon'    : 'icon-cut  btn btn- btn-primary',
+                    'icon'    : 'icon-cut  btn btn-mini btn-primary',
                     //'icon'    : ' icon-flag  icon-circle',
                     'callback': cut_notebook,
                     'id'      : 'cut_notebook'
                 },
                 {
                     'label'   : 'copy several cells',
-                    'icon'    : 'icon-copy btn-xs btn btn-small btn-primary',
+                    'icon'    : 'icon-copy btn btn-mini btn-primary',
                     //'icon'    : ' icon-flag  icon-circle',
                     'callback': copy_notebook,
                     'id'      : 'copy_notebook'
                 },
                 {
                     'label'   : 'paste several cells',
-                    'icon'    : 'icon-paste btn-sm btn btn-small btn-primary',
+                    'icon'    : 'icon-paste btn btn-mini btn-primary',
                     //'icon'    : ' icon-flag  icon-circle',
                     'callback': paste_notebook,
                     'id'      : 'cut_notebook'
