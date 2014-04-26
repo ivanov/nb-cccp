@@ -60,24 +60,51 @@ define( function () {
                     'id'      : 'cut_notebook'
                 },
             ], 'nb_cccp');
+
+            IPython.toolbar.add_buttons_group([
+                {
+                    'label'   : 'number of cells selected',
+                    //'icon'    : ' icon-flag  icon-circle',
+                    'callback': paste_notebook,
+                    'id'      : 'nb_cccp_count'
+                },
+                ]);
         $("#nb_cccp").addClass('btn btn-primary');
+        $("#nb_cccp_count").append('<span>0</span>').addClass('btn btn-mini btn-primary');
         }
     };
     
+    var toggle_cell = function() {
+        $('.selected').toggleClass('btn-primary');
+        // update select cells count
+        $("#nb_cccp_count span").text( $(".btn-primary .input").length );
+    };
+
     var load_ipython_extension = function () {
         cccp_button();
         $([IPython.events]).on("notebook_loaded.Notebook", function () {
                 var cm = IPython.keyboard_manager.command_shortcuts;
+
                 cm.add_shortcut("shift-down", function() { 
-                    $('.selected').toggleClass('btn-primary');
+                    toggle_cell();
                     IPython.notebook.select_next();
-                })
+                });
                 cm.add_shortcut("shift-up", function() { 
-                    $('.selected').toggleClass('btn-primary');
+                    toggle_cell();
                     IPython.notebook.select_prev();
                 });
                 cm.add_shortcut("shift-space", function() { 
-                    $('.selected').toggleClass('btn-primary');
+                    toggle_cell();
+                });
+
+                cm.add_shortcut("ctrl-space", function() { 
+                    toggle_cell();
+                });
+                cm.add_shortcut("ctrl-down", function() { 
+                    IPython.notebook.select_next();
+                });
+                cm.add_shortcut("ctrl-up", function() { 
+                    IPython.notebook.select_prev();
                 });
         });
     };
