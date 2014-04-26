@@ -14,15 +14,16 @@ require(["nbextensions/nb-cccp"], function (copy_paste) {
 
 */
 define( function () {
-    
+   
     var copy_notebook = function () {
         if (!IPython.notebook) return;
-        alert("copy");
+        $('.btn-primary').not('.btn-mini').removeClass('btn-primary');
     };
 
     var cut_notebook = function () {
         if (!IPython.notebook) return;
         alert("cut");
+        $('.btn-primary').not('.btn-mini').removeClass('btn-primary');
     };
     
     var paste_notebook = function () {
@@ -32,7 +33,8 @@ define( function () {
     
     var select_none = function () {
         if (!IPython.notebook) return;
-        $(".btn-primary .input").removeClass('btn-primary');
+        // un-select all cells, see toggle_cell note for fugly selector explanation
+        $('.btn-primary').not('.btn-mini').removeClass('btn-primary');
     };
 
 
@@ -74,7 +76,7 @@ define( function () {
                     'id'      : 'nb_cccp_count'
                 },
                 ]);
-        $("#nb_cccp").addClass('btn btn-primary');
+        $("#nb_cccp").addClass('btn btn-mini btn-primary');
         $("#nb_cccp_count").append('<span>0</span>').addClass('btn btn-mini btn-primary');
         }
     };
@@ -82,7 +84,12 @@ define( function () {
     var toggle_cell = function() {
         $('.selected').toggleClass('btn-primary');
         // update select cells count
-        $("#nb_cccp_count span").text( $(".btn-primary .input").length );
+        // XXX: this is ugly.
+        //      '.btn-primary .input' selector worked for code cells only
+        //      figure out how to do this for text cells also
+        $("#nb_cccp_count span").text( 
+                $('.btn-primary').not('.btn-mini').length
+                );
     };
 
     var load_ipython_extension = function () {
@@ -111,6 +118,28 @@ define( function () {
                 cm.add_shortcut("ctrl-up", function() { 
                     IPython.notebook.select_prev();
                 });
+
+                // add selection logic to all In[ ] prompts
+                $(".input_prompt").on('click', toggle_cell);
+
+
+        // add toggle_cell to new cells and cell that change their type
+        $([IPython.events]).on('selected_cell_type_changed.Notebook', function(evt, data) {
+            //{'cell': cell, 'index': index});index
+            // XXX: Next line should work, but something wonky's going on, so
+            //      we'll just be greedy
+            //$('.selected .input_prompt').on('click', toggle_cell_click);
+            $('.input_prompt').off('click', toggle_cell);
+            $('.input_prompt').on('click', toggle_cell);
+        });
+        $([IPython.events]).on('create.Cell', function(evt, data) {
+            // XXX: Next line should work, but something wonky's going on, so
+            //      we'll just be greedy
+            //$('.selected .input_prompt').on('click', toggle_cell_click);
+            $('.input_prompt').off('click', toggle_cell);
+            $('.input_prompt').on('click', toggle_cell);
+        });
+
         });
     };
     
