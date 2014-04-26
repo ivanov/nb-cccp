@@ -8,9 +8,14 @@ Author: [Paul Ivanov](http://github.com/ivanov)
 ```sh
 cd $(ipython locate)/nbextensions
 git clone gh:ivanov/nb-cccp
+echo "require(["nbextensions/nb-cccp"], function (copy_paste) {
+    copy_paste.load_ipython_extension();
+    console.log('copy_paste extension loaded');
+    });" >> $(ipython locate profile)/static/custom/custom.js
 ```
 
-And add these lines to your `$(ipython locate profile)/static/custom.js`
+The `echo` lines just add the following javascript to your `$(ipython locate
+profile)/static/custom/custom.js`
 
 ```js
 require(["nbextensions/nb-cccp"], function (copy_paste) {
