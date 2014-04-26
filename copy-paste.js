@@ -29,6 +29,11 @@ define( function () {
         if (!IPython.notebook) return;
         alert("paste");
     };
+    
+    var select_none = function () {
+        if (!IPython.notebook) return;
+        $(".btn-primary .input").removeClass('btn-primary');
+    };
 
 
     var cccp_button = function () {
@@ -63,9 +68,9 @@ define( function () {
 
             IPython.toolbar.add_buttons_group([
                 {
-                    'label'   : 'number of cells selected',
+                    'label'   : 'number of cells selected (click to select none)',
                     //'icon'    : ' icon-flag  icon-circle',
-                    'callback': paste_notebook,
+                    'callback': select_none,
                     'id'      : 'nb_cccp_count'
                 },
                 ]);
