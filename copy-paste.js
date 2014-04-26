@@ -40,21 +40,21 @@ define( function () {
             IPython.toolbar.add_buttons_group([
                 {
                     'label'   : 'cut several cells',
-                    'icon'    : 'icon-cut btn btn-small btn-primary',
+                    'icon'    : 'icon-cut  btn btn- btn-primary',
                     //'icon'    : ' icon-flag  icon-circle',
                     'callback': cut_notebook,
                     'id'      : 'cut_notebook'
                 },
                 {
                     'label'   : 'copy several cells',
-                    'icon'    : 'icon-copy btn btn-small btn-primary',
+                    'icon'    : 'icon-copy btn-xs btn btn-small btn-primary',
                     //'icon'    : ' icon-flag  icon-circle',
                     'callback': copy_notebook,
                     'id'      : 'copy_notebook'
                 },
                 {
                     'label'   : 'paste several cells',
-                    'icon'    : 'icon-paste btn btn-small btn-primary',
+                    'icon'    : 'icon-paste btn-sm btn btn-small btn-primary',
                     //'icon'    : ' icon-flag  icon-circle',
                     'callback': paste_notebook,
                     'id'      : 'cut_notebook'
@@ -66,7 +66,20 @@ define( function () {
     
     var load_ipython_extension = function () {
         cccp_button();
-        //$([IPython.events]).on("notebook_loaded.Notebook", function () {};
+        $([IPython.events]).on("notebook_loaded.Notebook", function () {
+                var cm = IPython.keyboard_manager.command_shortcuts;
+                cm.add_shortcut("shift-down", function() { 
+                    $('.selected').toggleClass('btn-primary');
+                    IPython.notebook.select_next();
+                })
+                cm.add_shortcut("shift-up", function() { 
+                    $('.selected').toggleClass('btn-primary');
+                    IPython.notebook.select_prev();
+                });
+                cm.add_shortcut("shift-space", function() { 
+                    $('.selected').toggleClass('btn-primary');
+                });
+        });
     };
     
     return {
