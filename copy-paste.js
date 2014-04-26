@@ -33,7 +33,7 @@ define( function () {
 
     var cccp_button = function () {
         if (!IPython.toolbar) {
-            $([IPython.events]).on("app_initialized.NotebookApp", ccccp_button);
+            $([IPython.events]).on("app_initialized.NotebookApp", cccp_button);
             return;
         }
         if ($("#nb_cccp").length === 0) {
@@ -59,8 +59,8 @@ define( function () {
                     'callback': paste_notebook,
                     'id'      : 'cut_notebook'
                 },
-            ], 'nb_cccp').
-        $("#nb_cccp").addClass('btn-primary alert-info');
+            ], 'nb_cccp');
+        $("#nb_cccp").addClass('btn btn-primary');
         }
     };
     
