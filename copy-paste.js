@@ -15,19 +15,59 @@ require(["nbextensions/nb-cccp"], function (copy_paste) {
 */
 define( function () {
    
+    var cells = null;
     var copy_notebook = function () {
         if (!IPython.notebook) return;
+        nb = IPython.notebook;
+        nb.cccp = [];
+        cells = nb.cccp;
+        $.each( nb.get_cell_elements(), function (index, value) {
+            if ( value.classList.contains('btn-primary') ) {
+                cells.push(nb.get_cell(index).toJSON());
+                //value.classList.add('disabled');
+            }
+        })
     };
 
     var cut_notebook = function () {
         if (!IPython.notebook) return;
-        alert("cut");
+        nb = IPython.notebook;
+        nb.cccp = [];
+        cells = nb.cccp;
+        // I worry about indices changing underneath me as i start deleting cells
+        var del_indices = [];
+        $.each( nb.get_cell_elements(), function (index, value) {
+            if ( value.classList.contains('btn-primary') ) {
+                cells.push(nb.get_cell(index).toJSON());
+                del_indices.push(index)
+            }
+        })
+
+        for (var i=0; i < cells.length; i++) {
+            nb.delete_cell(del_indices[i]-i);
+        }
         $('div.cell.btn-primary').removeClass('btn-primary');
+        // update select cells count
+        $("#nb_cccp_count span").text( $('div.cell.btn-primary').length);
     };
-    
+
     var paste_notebook = function () {
         if (!IPython.notebook) return;
+        if (!cells) return;
+        nb = IPython.notebook;
+        cells = nb.cccp;
         select_none();
+        var new_cell = null;
+        var cell_data;
+        for (var i=0; i < cells.length; i++) {
+            new_cell = nb.insert_cell_below(cells[i].cell_type);
+            new_cell.fromJSON(cells[i]);
+            new_cell.focus_cell();
+            // TODO: doesn't work
+            new_cell.value[0].classList.add('btn-primary');
+        }
+        // update select cells count
+        $("#nb_cccp_count span").text( $('div.cell.btn-primary').length);
     };
     
     var select_none = function () {
@@ -112,6 +152,10 @@ define( function () {
                     IPython.notebook.select_prev();
                 });
 
+                // actually, space bar is a pretty awesome shortcut
+                cm.add_shortcut("space", function() { 
+                    toggle_cell();
+                });
                 // add selection logic to all In[ ] prompts
                 $(".input_prompt").on('click', toggle_cell);
 

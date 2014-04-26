@@ -28,8 +28,9 @@ require(["nbextensions/nb-cccp"], function (copy_paste) {
 If the installation worked, reload a notebook and you should see a new set of
 blue cut/copy/paste icons with a blue border around the button group. 
 
-Toggle the selection of individual cells with `Ctrl-Space` or `Shift-Space`. The 
-selection does not need not be contiguous. You're welcome ;) 
+In *Command Mode*, toggle the selection of individual cells with `Space`,
+`Ctrl-Space`, or `Shift-Space`. The selection does not need not be contiguous.
+You're welcome ;) 
 
 Using `Shift-Up` and `Shift-Down`, you will toggle the selection status of the
 current cell and transition to the next cell.
@@ -38,3 +39,10 @@ current cell and transition to the next cell.
 having any cells selected, `Shift-Down` `Shift-Up` will actually select **two**
 cells. It's easiest to just think of *sweeping* over the cells you want, and
 while the `Shift` key is down, you are performing the sweep.
+
+**Limitations**
+For now, there are some limitations:
+
+    [ ] only works in the current notebook (not across notebooks)
+    [ ] the CCP actions are only triggered via mouseclick on the blue toolbar icons.
+    [ ] probably others, let me know
