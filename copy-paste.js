@@ -17,24 +17,22 @@ define( function () {
    
     var copy_notebook = function () {
         if (!IPython.notebook) return;
-        $('.btn-primary').not('.btn-mini').removeClass('btn-primary');
     };
 
     var cut_notebook = function () {
         if (!IPython.notebook) return;
         alert("cut");
-        $('.btn-primary').not('.btn-mini').removeClass('btn-primary');
+        $('div.cell.btn-primary').removeClass('btn-primary');
     };
     
     var paste_notebook = function () {
         if (!IPython.notebook) return;
-        alert("paste");
+        select_none();
     };
     
     var select_none = function () {
         if (!IPython.notebook) return;
-        // un-select all cells, see toggle_cell note for fugly selector explanation
-        $('.btn-primary').not('.btn-mini').removeClass('btn-primary');
+        $('div.cell.btn-primary').removeClass('btn-primary');
     };
 
 
@@ -84,12 +82,7 @@ define( function () {
     var toggle_cell = function() {
         $('.selected').toggleClass('btn-primary');
         // update select cells count
-        // XXX: this is ugly.
-        //      '.btn-primary .input' selector worked for code cells only
-        //      figure out how to do this for text cells also
-        $("#nb_cccp_count span").text( 
-                $('.btn-primary').not('.btn-mini').length
-                );
+        $("#nb_cccp_count span").text( $('div.cell.btn-primary').length);
     };
 
     var load_ipython_extension = function () {
