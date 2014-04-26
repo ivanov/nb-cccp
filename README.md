@@ -32,6 +32,12 @@ In *Command Mode*, toggle the selection of individual cells with `Space`,
 `Ctrl-Space`, or `Shift-Space`. The selection does not need not be contiguous.
 You're welcome ;) 
 
+In fact, just click the `In [ ]` area of code cells and the same place for
+markdown cells to toggle selection state.
+
+To the right of the blue CCP action is a blue indicator telling you how many
+cells are selected. If you click it, you will unselect all cells.
+
 Using `Shift-Up` and `Shift-Down`, you will toggle the selection status of the
 current cell and transition to the next cell.
 
