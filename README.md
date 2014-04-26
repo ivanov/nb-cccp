@@ -7,7 +7,7 @@ Author: [Paul Ivanov](http://github.com/ivanov)
 
 ```sh
 cd $(ipython locate)/nbextensions
-git clone gh:ivanov/nb-cccp
+git clone https://github.com/ivanov/nb-cccp
 echo "require(["nbextensions/nb-cccp"], function (copy_paste) {
     copy_paste.load_ipython_extension();
     console.log('copy_paste extension loaded');

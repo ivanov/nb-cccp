@@ -53,18 +53,18 @@ define( function () {
 
     var paste_notebook = function () {
         if (!IPython.notebook) return;
-        if (!cells) return;
         nb = IPython.notebook;
         cells = nb.cccp;
         select_none();
         var new_cell = null;
         var cell_data;
+        console.log('pasting these cells:', cells.length);
         for (var i=0; i < cells.length; i++) {
             new_cell = nb.insert_cell_below(cells[i].cell_type);
             new_cell.fromJSON(cells[i]);
             new_cell.focus_cell();
             // TODO: doesn't work
-            new_cell.value[0].classList.add('btn-primary');
+            new_cell.element[0].classList.add('btn-primary');
         }
         // update select cells count
         $("#nb_cccp_count span").text( $('div.cell.btn-primary').length);
