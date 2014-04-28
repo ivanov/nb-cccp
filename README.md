@@ -3,7 +3,9 @@ IPython Notebook Collective Cut-Copy-Paste
 
 Author: [Paul Ivanov](http://github.com/ivanov)
 
-A working prototype for multi-cell cut-copy-paste in the notebook.
+A working prototype for multi-cell cut-copy-paste in the notebook. This 
+functionality will be in the next version of IPython, this is just the first
+stab at an implementation so we (and you!) can start playing with it.
 
 ![img](https://cloud.githubusercontent.com/assets/118211/2823948/f234fa5c-cf27-11e3-9c14-827250e03277.png)
 
