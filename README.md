@@ -5,6 +5,8 @@ Author: [Paul Ivanov](http://github.com/ivanov)
 
 A working prototype for multi-cell cut-copy-paste in the notebook.
 
+![img](https://cloud.githubusercontent.com/assets/118211/2823948/f234fa5c-cf27-11e3-9c14-827250e03277.png)
+
 **Installation**
 
 ```sh
