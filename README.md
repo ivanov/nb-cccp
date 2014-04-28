@@ -61,6 +61,5 @@ For now, there are some limitations:
 
 **Feedback**
 
-    Please use [IPython issue
-    #5746](https://github.com/ipython/ipython/issues/5746) for feeback and
-    dicussion on the user interface / user experience.
+Please use [IPython issue #5746](https://github.com/ipython/ipython/issues/5746)
+for feedback and discussion on the user interface / user experience.
