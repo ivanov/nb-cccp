@@ -3,6 +3,8 @@ IPython Notebook Collective Cut-Copy-Paste
 
 Author: [Paul Ivanov](http://github.com/ivanov)
 
+A working prototype for multi-cell cut-copy-paste in the notebook.
+
 **Installation**
 
 ```sh
@@ -52,3 +54,9 @@ For now, there are some limitations:
     [ ] only works in the current notebook (not across notebooks)
     [ ] the CCP actions are only triggered via mouseclick on the blue toolbar icons.
     [ ] probably others, let me know
+
+**Feedback**
+
+    Please use [IPython issue
+    #5746](https://github.com/ipython/ipython/issues/5746) for feeback and
+    dicussion on the user interface / user experience.
