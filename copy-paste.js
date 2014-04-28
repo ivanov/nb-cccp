@@ -114,7 +114,6 @@ define( function () {
                     'id'      : 'nb_cccp_count'
                 },
                 ]);
-        $("#nb_cccp").addClass('btn btn-mini btn-primary');
         $("#nb_cccp_count").append('<span>0</span>').addClass('btn btn-mini btn-primary');
         }
     };
