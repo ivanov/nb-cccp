@@ -14,7 +14,7 @@ stab at an implementation so we (and you!) can start playing with it.
 ```sh
 cd $(ipython locate)/nbextensions
 git clone https://github.com/ivanov/nb-cccp
-echo "require(['nbextensions/nb-cccp'], function (copy_paste) {
+echo "require(['nbextensions/nb-cccp/copy-paste'], function (copy_paste) {
     copy_paste.load_ipython_extension();
     console.log('copy_paste extension loaded');
     });" >> $(ipython locate profile)/static/custom/custom.js
@@ -24,7 +24,7 @@ The `echo` lines just add the following javascript to your `$(ipython locate
 profile)/static/custom/custom.js`
 
 ```js
-require(["nbextensions/nb-cccp"], function (copy_paste) {
+require(["nbextensions/nb-cccp/copy-paste"], function (copy_paste) {
     copy_paste.load_ipython_extension();
     console.log('copy_paste extension loaded');
 });
